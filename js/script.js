@@ -12,7 +12,7 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 - con difficoltà 3 => 49 caselle, con un numero compreso tra 1 e 49, divise in 7 caselle per 7 righe;
 */ 
 
-"use strict"
+// "use strict"
 
 
 //Funzione per prendere il bottone Start
@@ -43,7 +43,61 @@ function start() {
             numCell = 49;
             break;
     }
- 
+
+    console.log(bombsPosition);
+    //funzione che genera la cella 
+    function drawCell(num) {
+        const cellPerSide = Math.sqrt(numCell)
+        const cell = document.createElement('div');
+        cell.className = 'square';
+        cell.style.width = `calc(100% / ${cellPerSide})`;
+        cell.style.height = `calc(100% / ${cellPerSide})`;
+        cell.innerHTML = `
+                <span>${num}</span>
+        `;
+        cell.addEventListener('click',function() {
+            //se clicco e il numero corrisponde a quello della lista bombs allora diventa rosso altrimenti green
+            if(!bombsPosition.includes(num)){
+            this.classList.add('green');
+            }else {
+                this.classList.add('red');
+                // console.log(document.querySelectorAll('red'));
+                check = true;
+                const redDiv = document.getElementsByClassName('red');
+                console.log(redDiv.classList);
+            }
+        })
+        return cell;
+    }
+
+        // generiamo le bombe
+    while(bombsPosition.length < NUM_BOMB) {
+        const bomb = randomNumber(1, numCell);
+        if(!bombsPosition.includes(bomb)){
+            bombsPosition.push(bomb);
+        }
+    }
+    
+        const redDiv = document.getElementsByClassName('red');
+        console.log(redDiv);
+    
+
+    
+
+
+    //funzione che genera il campo di gioco
+    function drawGrid() {
+        // const fieldGame = document.getElementById('field');
+        const grid = document.createElement('div');
+        grid.className = "grid";
+        for(let i = 1; i <= numCell; i++){
+            const cell = drawCell(i);
+            grid.appendChild(cell);
+        }
+        fieldGame.appendChild(grid);
+    }
+    //chiamo la funzione
+    drawGrid();
 }
 
 //attacco l'event listener
