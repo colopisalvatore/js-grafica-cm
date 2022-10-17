@@ -27,9 +27,29 @@
     <!--  Main JS File -->
     <script src="./js/script.js" defer></script>
 
-    <title>Document</title>
+    <title>Campo Minato</title>
 </head>
 <body>
+    <header class="d-flex justify-content-around align-items-center text-white">
+        <img src="./img/mine.png" alt="">
+        <h1>Campo Minato</h1>
+        <div class="d-flex">
+            <select class="form-select fw-bold " name="livello" id="level">
+                <!-- <option selected>Seleziona il livello</option> -->
+                <option value="1" selected>easy</option>
+                <option value="2">hard</option>
+                <option value="3">crazy</option>
+            </select>
+            <button class="btn btn-secondary btn-color fw-bold ms-1" id="start">Start</button>
+        </div>
+    </header>
+    <main>
+        <div class="container-md d-flex justify-content-center" id="field">
     
+        </div>
+    </main>
+    <footer class="d-flex justify-content-around align-items-center text-white">
+        <p>Made with &hearts; by Boolean</p>
+    </footer>
 </body>
 </html>
